@@ -1,5 +1,5 @@
 # helper decorators
-
+import logging
 from functools import wraps
 
 from django.core.exceptions import ImproperlyConfigured
@@ -7,6 +7,7 @@ from django.core.exceptions import ImproperlyConfigured
 from eb_sqs_worker import sqs
 from .app_settings import app_settings
 
+logger = logging.getLogger(__name__)
 
 def task(function=None, run_locally=None, queue_name=None, task_name=None):
     """
@@ -30,8 +31,8 @@ def task(function=None, run_locally=None, queue_name=None, task_name=None):
         # sqs view will automatically check for .execute method
         task_function_execution_path = f"{f.__module__}.{f.__name__}"
 
-        print(f"eb-sqs-worker: registering task {f} with decorator under name {task_name_to_use}; "
-              f"Overrides: run_locally: {run_locally}, queue_name: {queue_name}, task_name: {task_name}")
+        logger.info(f"eb-sqs-worker: registering task {f} with decorator under name {task_name_to_use}; "
+                    f"Overrides: run_locally: {run_locally}, queue_name: {queue_name}, task_name: {task_name}")
 
         if app_settings.enabled_tasks.get(task_name_to_use):
             raise ImproperlyConfigured(f"eb-sqs-worker error while trying to register task {task_name_to_use} through "
