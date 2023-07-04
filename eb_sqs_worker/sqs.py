@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 def get_sqs():
     return boto3.resource('sqs',
-                          region_name=app_settings.AWS_REGION,
+                          region_name=app_settings.AWS_EB_DEFAULT_REGION,
                           aws_access_key_id=app_settings.AWS_ACCESS_KEY_ID,
                           aws_secret_access_key=app_settings.AWS_SECRET_ACCESS_KEY)
 
