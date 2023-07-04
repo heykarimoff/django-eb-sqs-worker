@@ -15,11 +15,11 @@ class AppSettings:
 
     @cached_property
     def AWS_ACCESS_KEY_ID(self):
-        return self._get_setting('AWS_ACCESS_KEY_ID')
+        return self._get_setting('AWS_ACCESS_KEY_ID', raise_exception=False)
 
     @cached_property
     def AWS_SECRET_ACCESS_KEY(self):
-        return self._get_setting('AWS_SECRET_ACCESS_KEY')
+        return self._get_setting('AWS_SECRET_ACCESS_KEY', raise_exception=False)
 
     @cached_property
     def AWS_EB_DEFAULT_QUEUE_NAME(self):
