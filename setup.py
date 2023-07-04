@@ -8,7 +8,7 @@ with open('requirements.txt') as fp:
 
 setuptools.setup(
     name="django-eb-sqs-worker", # Replace with your own username
-    version="0.5.3",
+    version="0.5.4",
     author="Alexey Strelkov",
     author_email="datagreed@gmail.com",
     description="Django Background Tasks for Amazon Elastic Beanstalk",
